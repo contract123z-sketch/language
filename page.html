@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Polyglot Playground — Learn Languages</title>
+  <meta name="description" content="A friendly language-learning landing page featuring greetings and endonyms from dozens of languages. Perfect for GitHub Pages." />
+  <style>
+    :root {
+      --bg: #0f1221;         /* deep indigo */
+      --card: #141937;       /* inky blue */
+      --muted: #8892b0;      /* slate */
+      --text: #e6edf3;       /* near-white */
+      --accent: #7c9cff;     /* periwinkle */
+      --accent-2: #4ce0b3;   /* aqua */
+      --ring: 0 0 0 3px rgba(124,156,255,.35);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1000px 700px at 10% -10%, rgba(124,156,255,.08), transparent),
+                  radial-gradient(800px 600px at 90% 10%, rgba(76,224,179,.06), transparent),
+                  var(--bg);
+      color: var(--text);
+    }
+
+    header {
+      position: sticky; top: 0; z-index: 10;
+      background: linear-gradient(180deg, rgba(15,18,33,.9), rgba(15,18,33,.65));
+      backdrop-filter: saturate(140%) blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+    .hero {
+      display: grid; gap: 12px;
+      padding: 24px 0 8px;
+    }
+    .title { font-size: clamp(28px, 4vw, 46px); font-weight: 800; letter-spacing: .4px; }
+    .subtitle { color: var(--muted); font-size: clamp(14px, 2.2vw, 18px); }
+
+    .controls {
+      margin: 14px 0 22px; display: flex; gap: 12px; flex-wrap: wrap;
+    }
+    .search {
+      flex: 1 1 280px; min-width: 240px;
+      display: flex; align-items: center; gap: 10px;
+      background: var(--card); color: var(--text);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 14px; padding: 12px 14px;
+      box-shadow: 0 8px 30px rgba(2,6,23,.2) inset, 0 2px 0 rgba(255,255,255,.03);
+    }
+    .search input {
+      flex: 1; background: transparent; border: 0; outline: none; color: var(--text);
+      font-size: 15px;
+    }
+    .badge {
+      display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px;
+      background: linear-gradient(135deg, rgba(124,156,255,.15), rgba(76,224,179,.15));
+      border: 1px solid rgba(255,255,255,.08);
+      font-size: 13px; color: var(--text);
+    }
+
+    main { padding: 26px 0 60px; }
+    .grid {
+      display: grid; grid-template-columns: repeat(1, minmax(0, 1fr)); gap: 14px;
+    }
+    @media (min-width: 560px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 880px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (min-width: 1100px) { .grid { grid-template-columns: repeat(4, 1fr); } }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 16px; padding: 16px 16px 14px;
+      box-shadow: 0 6px 18px rgba(2,6,23,.35);
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .card:hover { transform: translateY(-3px); border-color: rgba(124,156,255,.35); box-shadow: 0 10px 26px rgba(2,6,23,.45); }
+
+    .lang-title { font-weight: 800; font-size: 18px; letter-spacing: .2px; margin: 2px 0 10px; }
+    .hello { font-size: 16px; opacity: .95; }
+    .meta { margin-top: 10px; font-size: 12px; color: var(--muted); display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+
+    .pill { font-size: 11px; padding: 6px 10px; border-radius: 999px; border: 1px solid rgba(255,255,255,.08);
+      background: rgba(124,156,255,.07); color: var(--text); }
+
+    .footer { color: var(--muted); text-align: center; padding: 28px 0 60px; font-size: 13px; }
+
+    .rtl { direction: rtl; text-align: right; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 1px, 1px); white-space: nowrap; border: 0; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="hero">
+        <div class="title">Polyglot Playground</div>
+        <div class="subtitle">Explore greetings and endonyms from dozens of languages. Use the search to filter by name, script, region, or greeting. Ready for GitHub Pages — just drop this file in your repo as <code>index.html</code>.</div>
+        <div class="controls">
+          <label class="search" for="q">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="11" cy="11" r="7.2" stroke="currentColor" stroke-width="1.8"/></svg>
+            <input id="q" type="search" placeholder="Search languages, scripts, or greetings… (e.g., العربية, кириллица, hello)" autocomplete="off" />
+          </label>
+          <span class="badge" id="countBadge">0 languages</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="grid" id="grid" aria-live="polite"></section>
+  </main>
+
+  <section dir="rtl" lang="ar" style="margin:20px; font-size:18px;">
+  أرسل بريدًا إلكترونيًا باستخدام Gmail مع الاسم الأول والأخير للمستخدم إلى learninglanguagesarabic@gmail.com
+  </section>
+
+  
+  <footer class="footer">
+    Built with ❤️ for language lovers. Add or edit entries by updating the <strong>languages</strong> array in the source.
+  </footer>
+
+  <script>
+    // Minimal dataset: endonym + common greeting (non-exhaustive; greetings are approximate).
+    // Feel free to expand! If a language is RTL, set rtl: true.
+    const languages = [
+      { endonym: 'English', code: 'en', greeting: 'Hello', region: 'Global' },
+      { endonym: 'العربية', code: 'ar', greeting: 'مرحبا', region: 'MENA', rtl: true },
+      { endonym: 'Español', code: 'es', greeting: 'Hola', region: 'Europe/América' },
+      { endonym: 'Français', code: 'fr', greeting: 'Bonjour', region: 'Europe/Afrique' },
+      { endonym: 'Deutsch', code: 'de', greeting: 'Hallo', region: 'Europa' },
+      { endonym: 'Italiano', code: 'it', greeting: 'Ciao', region: 'Europa' },
+      { endonym: 'Português', code: 'pt', greeting: 'Olá', region: 'Europa/América/África' },
+      { endonym: 'Русский', code: 'ru', greeting: 'Привет', region: 'Евразия' },
+      { endonym: '中文（简体）', code: 'zh-Hans', greeting: '你好', region: '中国' },
+      { endonym: '中文（繁體）', code: 'zh-Hant', greeting: '你好', region: '台灣/香港' },
+      { endonym: '日本語', code: 'ja', greeting: 'こんにちは', region: '日本' },
+      { endonym: '한국어', code: 'ko', greeting: '안녕하세요', region: '대한민국' },
+      { endonym: 'हिन्दी', code: 'hi', greeting: 'नमस्ते', region: 'भारत' },
+      { endonym: 'বাংলা', code: 'bn', greeting: 'নমস্কার', region: 'বাংলাদেশ/ভারত' },
+      { endonym: 'ਪੰਜਾਬੀ', code: 'pa', greeting: 'ਸਤ ਸ੍ਰੀ ਅਕਾਲ', region: 'ਭਾਰਤ/ਪਾਕਿਸਤਾਨ' },
+      { endonym: 'اردو', code: 'ur', greeting: 'السلام عليكم', region: 'پاکستان/भारत', rtl: true },
+      { endonym: 'فارسی', code: 'fa', greeting: 'سلام', region: 'ایران/افغانستان', rtl: true },
+      { endonym: 'Türkçe', code: 'tr', greeting: 'Merhaba', region: 'Türkiye' },
+      { endonym: 'Ελληνικά', code: 'el', greeting: 'Γεια σας', region: 'Ελλάδα' },
+      { endonym: 'עברית', code: 'he', greeting: 'שלום', region: 'ישראל', rtl: true },
+      { endonym: 'ไทย', code: 'th', greeting: 'สวัสดี', region: 'ประเทศไทย' },
+      { endonym: 'Tiếng Việt', code: 'vi', greeting: 'Xin chào', region: 'Việt Nam' },
+      { endonym: 'Bahasa Indonesia', code: 'id', greeting: 'Halo', region: 'Indonesia' },
+      { endonym: 'Bahasa Melayu', code: 'ms', greeting: 'Helo', region: 'Malaysia' },
+      { endonym: 'Kiswahili', code: 'sw', greeting: 'Hujambo', region: 'Afrika Mashariki' },
+      { endonym: 'አማርኛ', code: 'am', greeting: 'ሰላም', region: 'ኢትዮጵያ' },
+      { endonym: 'Yorùbá', code: 'yo', greeting: 'Bawo', region: 'Àfrica' },
+      { endonym: 'Hausa', code: 'ha', greeting: 'Sannu', region: 'Afirka' },
+      { endonym: 'isiZulu', code: 'zu', greeting: 'Sawubona', region: 'Afrika' },
+      { endonym: 'isiXhosa', code: 'xh', greeting: 'Molo', region: 'Afrika' },
+      { endonym: 'Afrikaans', code: 'af', greeting: 'Hallo', region: 'Afrika' },
+      { endonym: 'Nederlands', code: 'nl', greeting: 'Hallo', region: 'Europa' },
+      { endonym: 'Polski', code: 'pl', greeting: 'Cześć', region: 'Europa' },
+      { endonym: 'Čeština', code: 'cs', greeting: 'Ahoj', region: 'Evropa' },
+      { endonym: 'Slovenčina', code: 'sk', greeting: 'Ahoj', region: 'Európa' },
+      { endonym: 'Українська', code: 'uk', greeting: 'Привіт', region: 'Україна' },
+      { endonym: 'Беларуская', code: 'be', greeting: 'Вітаю', region: 'Беларусь' },
+      { endonym: 'Български', code: 'bg', greeting: 'Здравейте', region: 'България' },
+      { endonym: 'Srpski', code: 'sr', greeting: 'Здраво', region: 'Србија' },
+      { endonym: 'Hrvatski', code: 'hr', greeting: 'Bok', region: 'Hrvatska' },
+      { endonym: 'Bosanski', code: 'bs', greeting: 'Zdravo', region: 'Bosna' },
+      { endonym: 'Slovenščina', code: 'sl', greeting: 'Živjo', region: 'Slovenija' },
+      { endonym: 'Română', code: 'ro', greeting: 'Salut', region: 'Europa' },
+      { endonym: 'Magyar', code: 'hu', greeting: 'Szia', region: 'Európa' },
+      { endonym: 'Suomi', code: 'fi', greeting: 'Hei', region: 'Eurooppa' },
+      { endonym: 'Svenska', code: 'sv', greeting: 'Hej', region: 'Europa' },
+      { endonym: 'Norsk', code: 'no', greeting: 'Hei', region: 'Europa' },
+      { endonym: 'Dansk', code: 'da', greeting: 'Hej', region: 'Europa' },
+      { endonym: 'Íslenska', code: 'is', greeting: 'Halló', region: 'Ísland' },
+      { endonym: 'Gaeilge', code: 'ga', greeting: 'Dia dhuit', region: 'Éire' },
+      { endonym: 'Gàidhlig', code: 'gd', greeting: 'Halò', region: 'Alba' },
+      { endonym: 'Cymraeg', code: 'cy', greeting: 'Helo', region: 'Cymru' },
+      { endonym: 'Català', code: 'ca', greeting: 'Hola', region: 'Catalunya' },
+      { endonym: 'Euskara', code: 'eu', greeting: 'Kaixo', region: 'Euskal Herria' },
+      { endonym: 'Galego', code: 'gl', greeting: 'Ola', region: 'Galicia' },
+      { endonym: 'Latviešu', code: 'lv', greeting: 'Sveiki', region: 'Baltija' },
+      { endonym: 'Lietuvių', code: 'lt', greeting: 'Sveiki', region: 'Baltija' },
+      { endonym: 'Eesti', code: 'et', greeting: 'Tere', region: 'Baltikum' },
+      { endonym: 'Filipino', code: 'fil', greeting: 'Kamusta', region: 'Pilipinas' },
+      { endonym: 'ខ្មែរ', code: 'km', greeting: 'សួស្តី', region: 'កម្ពុជា' },
+      { endonym: 'ລາວ', code: 'lo', greeting: 'ສະບາຍດີ', region: 'ລາວ' },
+      { endonym: 'မြန်မာ', code: 'my', greeting: 'မင်္ဂလာပါ', region: 'မြန်မာ' },
+      { endonym: 'नेपाली', code: 'ne', greeting: 'नमस्ते', region: 'नेपाल' },
+      { endonym: 'සිංහල', code: 'si', greeting: 'ආයුබෝවන්', region: 'ශ්‍රී ලංකා' },
+      { endonym: 'मराठी', code: 'mr', greeting: 'नमस्कार', region: 'भारत' },
+      { endonym: 'ગુજરાતી', code: 'gu', greeting: 'નમસ્તે', region: 'ભારત' },
+      { endonym: 'தமிழ்', code: 'ta', greeting: 'வணக்கம்', region: 'இந்தியா/இலங்கை' },
+      { endonym: 'తెలుగు', code: 'te', greeting: 'నమస్తే', region: 'భారతదేశము' },
+      { endonym: 'ಕನ್ನಡ', code: 'kn', greeting: 'ನಮಸ್ಕಾರ', region: 'ಭಾರತ' },
+      { endonym: 'മലയാളം', code: 'ml', greeting: 'നമസ്കാരം', region: 'ഇന്ത്യ' },
+      { endonym: 'ଓଡ଼ିଆ', code: 'or', greeting: 'ନମସ୍କାର', region: 'ଭାରତ' },
+      { endonym: 'অসমীয়া', code: 'as', greeting: 'নমস্কাৰ', region: 'ভাৰত' },
+      { endonym: 'Монгол', code: 'mn', greeting: 'Сайн байна уу', region: 'Монгол' },
+      { endonym: 'Oʻzbek', code: 'uz', greeting: 'Salom', region: 'Oʻzbekiston' },
+      { endonym: 'Қазақ', code: 'kk', greeting: 'Сәлем', region: 'Қазақстан' },
+      { endonym: 'Հայերեն', code: 'hy', greeting: 'Բարեւ', region: 'Հայաստան' },
+      { endonym: 'ქართული', code: 'ka', greeting: 'გამარჯობა', region: 'საქართველო' },
+      { endonym: 'Shqip', code: 'sq', greeting: 'Përshëndetje', region: 'Shqipëri' },
+      { endonym: 'Македонски', code: 'mk', greeting: 'Здраво', region: 'Македонија' },
+      { endonym: 'Azərbaycan dili', code: 'az', greeting: 'Salam', region: 'Azərbaycan' },
+      { endonym: 'Kurdî (Kurmancî)', code: 'ku', greeting: 'Slav', region: 'Kurdistan' },
+      { endonym: 'پښتو', code: 'ps', greeting: 'سلام', region: 'افغانستان/پاکستان', rtl: true },
+      { endonym: 'Soomaali', code: 'so', greeting: 'Salaan', region: 'Soomaaliya' },
+      { endonym: 'Malagasy', code: 'mg', greeting: 'Salama', region: 'Madagasikara' },
+      { endonym: 'Māori', code: 'mi', greeting: 'Kia ora', region: 'Aotearoa' },
+      { endonym: 'Gagana Sāmoa', code: 'sm', greeting: 'Talofa', region: 'Sāmoa' },
+      { endonym: 'lea fakatonga', code: 'to', greeting: 'Mālō e lelei', region: 'Tonga' },
+      { endonym: 'Kreyòl ayisyen', code: 'ht', greeting: 'Bonjou', region: 'Ayiti' },
+      { endonym: 'Runasimi (Quechua)', code: 'qu', greeting: 'Rimaykullayki', region: 'Andes' },
+      { endonym: 'Nahuatl (Nāhuatl)', code: 'nah', greeting: 'Niltze', region: 'Mesoamérica' },
+      { endonym: 'Esperanto', code: 'eo', greeting: 'Saluton', region: 'Mondo' },
+    ];
+
+    const grid = document.getElementById('grid');
+    const input = document.getElementById('q');
+    const countBadge = document.getElementById('countBadge');
+
+    function cardTemplate(item) {
+      const rtlClass = item.rtl ? 'rtl' : '';
+      return `
+        <article class="card ${rtlClass}" lang="${item.code}" ${item.rtl ? 'dir="rtl"' : ''}>
+          <div class="lang-title">${item.endonym}</div>
+          <div class="hello">${item.greeting}</div>
+          <div class="meta">
+            <span class="pill">${item.code}</span>
+            <span>${item.region}</span>
+          </div>
+        </article>
+      `;
+    }
+
+    function render(list) {
+      grid.innerHTML = list.map(cardTemplate).join('');
+      countBadge.textContent = `${list.length} language${list.length === 1 ? '' : 's'}`;
+    }
+
+    function normalize(s) {
+      return s.toLowerCase().normalize('NFKD');
+    }
+
+    function filter() {
+      const q = normalize(input.value.trim());
+      if (!q) return render(languages);
+      const parts = q.split(/\s+/);
+      const out = languages.filter(l => {
+        const hay = normalize(`${l.endonym} ${l.greeting} ${l.region} ${l.code}`);
+        return parts.every(p => hay.includes(p));
+      });
+      render(out);
+    }
+
+    input.addEventListener('input', filter);
+
+    // Initial render
+    render(languages);
+  </script>
+</body>
+</html>
